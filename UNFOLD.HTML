@@ -1,0 +1,349 @@
+
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unfold Hands | Child Support CBO Jasho Farm</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js for interactivity -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        .hero-gradient { background: linear-gradient(to right, rgba(6, 78, 59, 0.95), rgba(6, 78, 59, 0.4)); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900" x-data="{ mobileMenu: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- Navigation -->
+    <nav :class="scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-5'" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="bg-emerald-600 p-2 rounded-lg text-white">
+                    <i data-lucide="hand-heart" class="w-6 h-6"></i>
+                </div>
+                <span :class="scrolled ? 'text-emerald-800' : 'text-white md:text-white text-emerald-900'" class="font-bold text-xl tracking-tight transition-colors">
+                    UNFOLD HANDS
+                </span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <template x-for="item in ['Home', 'About', 'Programs', 'Impact', 'Contact']">
+                    <a :href="'#' + item.toLowerCase()" 
+                       class="font-medium transition-colors hover:text-emerald-500"
+                       :class="scrolled ? 'text-slate-700' : 'text-white'"
+                       x-text="item"></a>
+                </template>
+                <a href="#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-lg hover:shadow-emerald-200/50">
+                    Donate Now
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden p-2" @click="mobileMenu = !mobileMenu" :class="scrolled ? 'text-slate-900' : 'text-white'">
+                <i data-lucide="menu" x-show="!mobileMenu"></i>
+                <i data-lucide="x" x-show="mobileMenu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div x-show="mobileMenu" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="md:hidden bg-white absolute top-full left-0 w-full shadow-2xl p-6 border-t border-slate-100">
+            <div class="flex flex-col gap-4">
+                <a href="#home" @click="mobileMenu = false" class="py-2 font-semibold text-slate-700">Home</a>
+                <a href="#about" @click="mobileMenu = false" class="py-2 font-semibold text-slate-700">About Us</a>
+                <a href="#programs" @click="mobileMenu = false" class="py-2 font-semibold text-slate-700">Programs</a>
+                <a href="#contact" @click="mobileMenu = false" class="py-2 font-semibold text-slate-700">Contact</a>
+                <a href="#donate" @click="mobileMenu = false" class="bg-emerald-600 text-white p-4 rounded-xl text-center font-bold">Donate Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 hero-gradient z-10"></div>
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=2000&q=80" 
+                 alt="Children in community" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <div class="max-w-2xl opacity-0 translate-x-[-20px]" x-intersect="$el.classList.add('opacity-100', 'translate-x-0', 'transition', 'duration-1000')">
+                <span class="bg-emerald-500/20 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6 inline-block backdrop-blur-md border border-emerald-500/30">
+                    Jasho Farm Community Support
+                </span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+                    Empowering Every <span class="text-emerald-400">Child's</span> Future.
+                </h1>
+                <p class="text-xl text-emerald-50/90 mb-10 leading-relaxed">
+                    Unfold Hands is a dedicated CBO in Jasho Farm providing essential child support, education resources, and health guidance to vulnerable families.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#programs" class="bg-white text-emerald-900 hover:bg-emerald-50 px-8 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all">
+                        Our Programs <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#contact" class="border-2 border-white/30 hover:border-white/60 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-bold text-lg text-center transition-all">
+                        Become a Volunteer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="impact" class="py-12 bg-white relative -mt-16 z-30 max-w-5xl mx-auto rounded-[2.5rem] shadow-2xl px-8 border border-slate-100">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
+            <div class="px-4">
+                <div class="text-3xl font-black text-emerald-600">200+</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Children Helped</div>
+            </div>
+            <div class="px-4">
+                <div class="text-3xl font-black text-emerald-600">15+</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Volunteers</div>
+            </div>
+            <div class="px-4">
+                <div class="text-3xl font-black text-emerald-600">5</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Core Programs</div>
+            </div>
+            <div class="px-4">
+                <div class="text-3xl font-black text-emerald-600">1k+</div>
+                <div class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Meals Provided</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative group">
+                <div class="absolute -top-6 -left-6 w-32 h-32 bg-emerald-100 rounded-full z-0 animate-pulse"></div>
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Education" class="relative z-10 rounded-[3rem] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                <div class="absolute -bottom-8 -right-8 bg-emerald-600 text-white p-8 rounded-3xl shadow-2xl z-20">
+                    <i data-lucide="award" class="w-10 h-10 mb-3"></i>
+                    <div class="font-bold text-lg">Registered CBO</div>
+                    <div class="text-sm text-emerald-100">Jasho Farm Community</div>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                    Restoring Hope to our <br> 
+                    <span class="text-emerald-600 underline decoration-emerald-200 underline-offset-8">Next Generation.</span>
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    Unfold Hands started as a small local gathering in Jasho Farm. Today, we are a vital support system ensuring that every child, regardless of their background, has access to basic rights and a chance to thrive.
+                </p>
+                <div class="grid gap-4">
+                    <template x-for="text in ['Child Protection Advocacy', 'Education Scholarships', 'Nutrition Support', 'Youth Mentorship']">
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                            <i data-lucide="check-circle-2" class="text-emerald-500 w-6 h-6"></i>
+                            <span class="font-semibold text-slate-700" x-text="text"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs" class="py-24 bg-emerald-950 text-white rounded-t-[4rem] -mb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-4xl font-bold mb-4">Our Core Programs</h2>
+                <p class="text-emerald-200/70 text-lg">Comprehensive care focused on the physical, mental, and educational needs of children.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-emerald-900/40 border border-emerald-800 p-10 rounded-[2.5rem] hover:bg-emerald-900 transition-all group">
+                    <div class="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:rotate-6 transition-transform">
+                        <i data-lucide="book-open" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Education Plus</h3>
+                    <p class="text-emerald-100/60 leading-relaxed">Providing school kits, uniforms, and covering tuition gaps for vulnerable primary students.</p>
+                </div>
+                <!-- Program 2 -->
+                <div class="bg-emerald-900/40 border border-emerald-800 p-10 rounded-[2.5rem] hover:bg-emerald-900 transition-all group">
+                    <div class="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:rotate-6 transition-transform">
+                        <i data-lucide="heart" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Health & Nutrition</h3>
+                    <p class="text-emerald-100/60 leading-relaxed">Weekly meal programs and medical advocacy to ensure no child in Jasho Farm goes hungry.</p>
+                </div>
+                <!-- Program 3 -->
+                <div class="bg-emerald-900/40 border border-emerald-800 p-10 rounded-[2.5rem] hover:bg-emerald-900 transition-all group">
+                    <div class="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:rotate-6 transition-transform">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Family Outreach</h3>
+                    <p class="text-emerald-100/60 leading-relaxed">Empowering parents with skills and counseling to create safer environments for children.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donate" class="py-32 bg-white rounded-t-[4rem]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-slate-50 to-emerald-50 rounded-[3.5rem] p-8 md:p-20 border border-emerald-100 flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-extrabold mb-6 text-slate-900">Your Support Changes <br><span class="text-emerald-600">Lives.</span></h2>
+                    <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+                        Every contribution goes directly toward our grassroots operations in Jasho Farm. We maintain 100% transparency with our funding.
+                    </p>
+                    <div class="grid gap-4">
+                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-100 flex items-center gap-6">
+                            <div class="bg-emerald-600 text-white px-4 py-2 rounded-xl font-black text-sm">M-PESA</div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-bold uppercase tracking-widest">Paybill Number</div>
+                                <div class="text-2xl font-black text-slate-800">400222</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-100 flex items-center gap-6">
+                            <div class="bg-slate-800 text-white px-4 py-2 rounded-xl font-black text-sm">ACC.</div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-bold uppercase tracking-widest">Account Name</div>
+                                <div class="text-xl font-bold text-slate-800">UNFOLD HANDS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="bg-emerald-700 p-10 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-6">Direct Mobile Transfer</h3>
+                            <p class="text-emerald-100 mb-8 italic">Speak to our coordinators for direct support:</p>
+                            <div class="space-y-5">
+                                <div class="flex justify-between items-center bg-emerald-800/50 p-4 rounded-2xl border border-emerald-600">
+                                    <span class="font-medium text-emerald-200">Coordinator</span>
+                                    <span class="font-mono font-bold text-lg">+254 759 500 240</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-emerald-800/50 p-4 rounded-2xl border border-emerald-600">
+                                    <span class="font-medium text-emerald-200">Secretary</span>
+                                    <span class="font-mono font-bold text-lg">+254 799 008 282</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-emerald-800/50 p-4 rounded-2xl border border-emerald-600">
+                                    <span class="font-medium text-emerald-200">Director</span>
+                                    <span class="font-mono font-bold text-lg">+254 715 636 605</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i data-lucide="hand-heart" class="absolute -bottom-10 -right-10 w-64 h-64 text-emerald-600/30 group-hover:scale-110 transition-transform duration-700"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Volunteer -->
+    <section id="contact" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8">Get In Touch</h2>
+                    <p class="text-lg text-slate-600 mb-12">Visit us at our Jasho Farm center or send us an inquiry below. We respond to all messages within 24 hours.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-6">
+                            <div class="bg-white p-4 rounded-2xl shadow-sm text-emerald-600 border border-slate-200">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Our Location</h4>
+                                <p class="text-slate-500">Jasho Farm, Eldoret Region</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="bg-white p-4 rounded-2xl shadow-sm text-emerald-600 border border-slate-200">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Email Address</h4>
+                                <p class="text-slate-500">ndiemanimrod@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100" x-data="{ sent: false }">
+                    <h3 class="text-2xl font-bold mb-8">Volunteer Application</h3>
+                    <form @submit.prevent="sent = true; setTimeout(() => sent = false, 5000)" class="space-y-5">
+                        <div x-show="sent" class="bg-emerald-100 text-emerald-700 p-4 rounded-2xl mb-4 font-bold animate-bounce">
+                            Thank you! We will reach out soon.
+                        </div>
+                        <input type="text" placeholder="Full Name" required class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                        <input type="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                        <textarea placeholder="Tell us how you'd like to help" rows="4" required class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent focus:ring-2 focus:ring-emerald-500 outline-none transition-all resize-none"></textarea>
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-5 rounded-2xl transition-all shadow-lg flex items-center justify-center gap-3">
+                            Send Application <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-8">
+                        <i data-lucide="hand-heart" class="text-emerald-500 w-10 h-10"></i>
+                        <span class="font-bold text-3xl">UNFOLD HANDS</span>
+                    </div>
+                    <p class="text-slate-400 text-lg leading-relaxed max-w-md">
+                        Transforming the lives of children in Jasho Farm through community-led support and advocacy. Registered CBO.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-8 text-emerald-400">Company</h4>
+                    <ul class="space-y-4 text-slate-500">
+                        <li><a href="#about" class="hover:text-emerald-400">About Us</a></li>
+                        <li><a href="#programs" class="hover:text-emerald-400">Our Impact</a></li>
+                        <li><a href="#donate" class="hover:text-emerald-400">Ways to Give</a></li>
+                        <li><a href="#contact" class="hover:text-emerald-400">Volunteer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-8 text-emerald-400">Connect</h4>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors cursor-pointer border border-slate-800">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors cursor-pointer border border-slate-800">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors cursor-pointer border border-slate-800">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-900 text-center text-slate-600 text-sm">
+                &copy; 2026 Unfold Hands CBO. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Contact -->
+    <a href="https://wa.me/254759500240" target="_blank" class="fixed bottom-8 right-8 z-[100] bg-emerald-500 text-white p-5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center animate-bounce">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </a>
+
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
